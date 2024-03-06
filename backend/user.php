@@ -10,36 +10,37 @@ class user
     public function __construct($l, $p)
     {
 
-        global $db;
         session_start();
+        global $db;
+
+
 
         $this->login = SQLite3::escapeString($l);
         $this->pass = SQLite3::escapeString($p);
 
-        $test = $db->query("SELECT * FROM users");
-        var_dump($test->fetchArray());
+
 
 
         $sql_admin = $db->query("SELECT * FROM users WHERE login = '{$this->login}' AND password = '{$this->pass}' LIMIT 1");
 
-        echo "SELECT * FROM users WHERE login = '{$this->login}' AND pass = '{$this->pass}' LIMIT 1";
+
         if ($sql_admin) {;
+            $user = $sql_admin->fetchArray();
             $_SESSION['login'] = true;
-            $_SESSION['user_id'] = $sql_admin->fetchArray()['user_id'];
-            $_SESSION['first_name'] = $sql_admin->fetchArray()['first_name'];
-            $_SESSION['last_name'] = $sql_admin->fetchArray()['last_name'];
-            $_SESSION['email'] = $sql_admin->fetchArray()['email'];
+            $_SESSION['user_id'] = $user['user_id'];
+            $_SESSION['first_name'] = $user['first_name'];
+            $_SESSION['last_name'] = $user['last_name'];
+            $_SESSION['email'] = $user['email'];
             $_SESSION['module'] = "admin";
-            header("Location: /admin");
         } else {
             $sql_empresa = $db->query("SELECT * FROM users_company WHERE login = '{$this->login}' AND password = '{$this->pass}' LIMIT 1");
             if ($sql_empresa) {
+                $user_empresa = $sql_empresa->fetchArray();
                 $_SESSION['login'] = true;
-                $_SESSION['first_name'] = $sql_empresa->fetchArray()['first_name'];
-                $_SESSION['last_name'] = $sql_empresa->fetchArray()['last_name'];
-                $_SESSION['email'] = $sql_empresa->fetchArray()['email'];
+                $_SESSION['first_name'] = $user_empresa['first_name'];
+                $_SESSION['last_name'] = $user_empresa['last_name'];
+                $_SESSION['email'] = $user_empresa['email'];
                 $_SESSION['module'] = "empresa";
-                header("Location: /empresa");
             } else {
                 $_SESSION['login'] = false;
             }

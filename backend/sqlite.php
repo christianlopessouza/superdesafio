@@ -10,7 +10,7 @@ $db->exec("CREATE TABLE if not exists users (
             user_id INTEGER PRIMARY KEY NOT NULL,
             login TEXT NOT NULL UNIQUE,
             password TEXT NOT NULL,
-            fist_name TEXT NOT NULL,
+            first_name TEXT NOT NULL,
             last_name TEXT NOT NULL,
             email TEXT NOT NULL UNIQUE,
             created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -35,7 +35,7 @@ $db->exec("CREATE TABLE if not exists users_company (
             login TEXT NOT NULL UNIQUE,
             password TEXT NOT NULL,
             company_id INTEGER NOT NULL,
-            fist_name TEXT NOT NULL,
+            first_name TEXT NOT NULL,
             last_name TEXT NOT NULL,
             email TEXT NOT NULL UNIQUE,
             created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -57,7 +57,7 @@ END;");
 echo "Tabela criada com sucesso! (users_company)<br>";
 
 /* Usuario de Administrador */
-$db->exec("INSERT INTO users (login, password, fist_name, last_name, email) VALUES ('admin', 'admin', 'admin', 'admin', 'admin')");
+$db->exec("INSERT INTO users (login, password, first_name, last_name, email) VALUES ('admin', 'admin', 'admin', 'admin', 'admin')");
 
 echo "Inserido admin com sucesso! (users)<br>";
 
@@ -71,9 +71,9 @@ echo "Inserido Byte & Construtores com sucesso! (company_name)<br>";
 
 
 /* Usuários da empresa de teste */
-$db->exec("INSERT INTO users_company (login, password, fist_name, last_name, email, company_id) VALUES ('augusto.pereira', 'usuario1', 'Augusto', 'Pereira', 'augusto.pereira@email.com', 1)");
+$db->exec("INSERT INTO users_company (login, password, first_name, last_name, email, company_id) VALUES ('augusto.pereira', 'usuario1', 'Augusto', 'Pereira', 'augusto.pereira@email.com', 1)");
 echo "Inserido Augusto com sucesso! (users_company)<br>";
-$db->exec("INSERT INTO users_company (login, password, fist_name, last_name, email, company_id) VALUES ('jose.ponte', 'usuario2', 'José', 'Pontes', 'josé.pontes@email.com', 2)");
+$db->exec("INSERT INTO users_company (login, password, first_name, last_name, email, company_id) VALUES ('jose.ponte', 'usuario2', 'José', 'Pontes', 'josé.pontes@email.com', 2)");
 echo "Inserido Jose com sucesso! (users_company)<br>";
-$db->exec("INSERT INTO users_company (login, password, fist_name, last_name, email, company_id) VALUES ('marcos.silva', 'usuario3', 'Marcos', 'Silva', 'marcos.silva@email.com', 2)");
+$db->exec("INSERT INTO users_company (login, password, first_name, last_name, email, company_id) VALUES ('marcos.silva', 'usuario3', 'Marcos', 'Silva', 'marcos.silva@email.com', 2)");
 echo "Inserido Marcos com sucesso! (users_company)<br>";
