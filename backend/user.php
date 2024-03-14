@@ -24,7 +24,7 @@ class user
         $sql_admin = $db->query("SELECT * FROM users WHERE login = '{$this->login}' AND password = '{$this->pass}' LIMIT 1");
 
 
-        if ($sql_admin) {;
+        if ($sql_admin) {
             $user = $sql_admin->fetchArray();
             $_SESSION['login'] = true;
             $_SESSION['user_id'] = $user['user_id'];
@@ -32,6 +32,7 @@ class user
             $_SESSION['last_name'] = $user['last_name'];
             $_SESSION['email'] = $user['email'];
             $_SESSION['module'] = "admin";
+
         } else {
             $sql_empresa = $db->query("SELECT * FROM users_company WHERE login = '{$this->login}' AND password = '{$this->pass}' LIMIT 1");
             if ($sql_empresa) {
@@ -83,9 +84,9 @@ class user
     public function redirect_dashboard()
     {
         if ($this->getModule() == "admin") {
-            header("Location: /admin");
+            header("Location: ../../admin");
         } else if ($this->getModule() == "empresa") {
-            header("Location: /empresa");
+            header("Location: ../../empresa");
         }
     }
 }

@@ -8,6 +8,14 @@ $password = SQLite3::escapeString($_POST['password']);
 $login_usuario = new user($user, $password);
 
 $_SESSION['user'] = $login_usuario;
+
 if ($_SESSION['user']->login()) {
     $_SESSION['user']->redirect_dashboard();
+    die;
 };
+
+
+
+$redirect_url = "../../login/?report=client-off";
+header("Location: $redirect_url");
+exit();
